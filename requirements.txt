@@ -1,0 +1,12 @@
+# this is the "requirements.txt" file...
+
+python-dotenv
+
+requests
+
+pytest
+
+flask
+
+# Used in production to run our web app:
+gunicorn
