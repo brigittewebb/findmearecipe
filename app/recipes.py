@@ -4,8 +4,13 @@
 
 import requests
 import json
+import os
 
-from app.spoonacular_service import API_KEY
+from dotenv import load_dotenv
+
+load_dotenv() # looks in the ".env" file for env vars
+
+API_KEY = os.getenv("SPOONACULAR_API_KEY", default="demo")
 
 
 def retrieve_recipes(ingredients, cuisine, diet, intolerances, dish_type, maxReadyTime, sort, number, fillIngredients):
@@ -26,6 +31,17 @@ def retrieve_recipes(ingredients, cuisine, diet, intolerances, dish_type, maxRea
     data = parsed_response["results"]
 
     return data
+
+
+def retrieve_recipe_info(recipe_id):
+
+    request_url = f"https://api.spoonacular.com/recipes/{recipe_id}/information?apiKey={API_KEY}"
+
+    response = requests.get(request_url)
+
+    parsed_response = json.loads(response.text)
+  
+    return parsed_response
 
 
 if __name__ == "__main__":

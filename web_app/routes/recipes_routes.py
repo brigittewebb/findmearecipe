@@ -3,12 +3,17 @@
 
 from flask import Blueprint, request, render_template, redirect, flash
 
-from app.recipes import retrieve_recipes
+from app.recipes import retrieve_recipes, retrieve_recipe_info
 
 recipes_routes = Blueprint("recipes_routes", __name__)
 
+@recipes_routes.route("/")
+def Home():
+    print("HOME...")
+    return render_template("home.html")
+
 @recipes_routes.route("/recipes/form")
-def Recipes_form():
+def recipes_form():
     print("RECIPES FORM...")
     return render_template("recipes_form.html")
 
@@ -53,6 +58,26 @@ def recipes_list():
 
         flash("Recipe Data Error. Please check your inputs and try again!", "danger")
         return redirect("/recipes/form")
+    
+@recipes_routes.route("/recipe/info")
+def recipe_info():
+    request_data = dict(request.args)
+    print("URL PARAMS:", request_data)
+    
+    try:
+        recipe_id = request_data["recipe_id"]
+
+        recipe = retrieve_recipe_info(recipe_id=recipe_id)
+        flash("Fetched Recipe Data!", "success") # First parameter is message to display, second parameter is bootstrap color code
+        return render_template("recipe_info.html",
+            recipe=recipe
+        )
+    except Exception as err:
+        print('OOPS', err)
+
+        flash("Recipe Data Error. Please check your inputs and try again!", "danger")
+        return redirect("/recipes/form")
+
 
 #
 # API ROUTES

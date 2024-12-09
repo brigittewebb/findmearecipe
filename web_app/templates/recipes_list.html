@@ -12,10 +12,12 @@
         <div class="row">
             {% for item in data %}
                 <div class="col">
-                    <div class="card" style="width: 18rem; margin-bottom: 20px;">
+                    <div class="card position-relative" style="width: 18rem; margin-bottom: 20px;">
                         <img class="card-img-top" src="{{ item.image }}" alt="an image of '{{ item.title }}'">
                         <div class="card-body">
                             <h5 class="card-title">{{ item.title }}</h5>
+                            <p class="card-text">Missing Ingredients: (ADD MISSING INGREDIENTS).</p>
+                            <a href="/recipe/info?recipe_id={{ item.id }}" class="btn btn-primary stretched-link">View Info</a> <!--COULD YOU MAKE EACH CARD A FORM?-->
                         </div>
                     </div>
                 </div>

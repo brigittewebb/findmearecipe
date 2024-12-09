@@ -43,7 +43,7 @@
         ('/recipes/form', 'recipes_form', 'Recipes Form'),
         ('/recipes/list', 'recipes_list', 'Recipes List'),
     ] -%}
-    {% set active_page = active_page|default('recipes_form') -%} <!---- Change default to home if we add a home page-->
+    {% set active_page = active_page|default('home') -%} <!---- Change default to home if we add a home page-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-info">
         <div class="container-fluid">
             <!--a class="navbar-brand" href="/">My Web App</a-->
