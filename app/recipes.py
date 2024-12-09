@@ -8,9 +8,9 @@ import json
 from app.spoonacular_service import API_KEY
 
 
-def retrieve_recipes(query, cuisine, diet, intolerances, dish_type, maxReadyTime, sort, number, fillIngredients):
+def retrieve_recipes(ingredients, cuisine, diet, intolerances, dish_type, maxReadyTime, sort, number, fillIngredients):
 
-    url_parameters = {"query":query,"cuisine":cuisine,"diet":diet,"intolerances":intolerances,"type":dish_type,"maxReadyTime":maxReadyTime,"sort":sort,"number":number,"fillIngredients":fillIngredients}
+    url_parameters = {"ingredients":ingredients,"cuisine":cuisine,"diet":diet,"intolerances":intolerances,"type":dish_type,"maxReadyTime":maxReadyTime,"sort":sort,"number":number,"fillIngredients":fillIngredients}
     selected_url_parameters = ""
 
     for key in url_parameters:
@@ -30,7 +30,7 @@ def retrieve_recipes(query, cuisine, diet, intolerances, dish_type, maxReadyTime
 
 if __name__ == "__main__":
 
-    selected_query = ["apples","flour","sugar"]
+    selected_ingredients = ["apples","flour","sugar"]
     selected_cuisine = None # Type of food (ex., "Italian")--dropdown list
     selected_diet = None # Special diets (ex., "vegetarian")--dropdown list
     selected_intolerances = None # Dietary resrictions (ex., "gluten")--dropdown list
@@ -40,5 +40,5 @@ if __name__ == "__main__":
     selected_number = 1 # Number of desired results
     selected_fillIngredients = True
 
-    data = retrieve_recipes(selected_query,selected_cuisine,selected_diet,selected_intolerances,selected_dish_type,selected_maxReadyTime,selected_sort,selected_number,selected_fillIngredients)
+    data = retrieve_recipes(selected_ingredients,selected_cuisine,selected_diet,selected_intolerances,selected_dish_type,selected_maxReadyTime,selected_sort,selected_number,selected_fillIngredients)
     print(data)
