@@ -26,7 +26,6 @@ pip install -r requirements.txt
 Create a ".env" file and add contents like the following (using your own Spoonacular API Key):
 
 ```sh
-# this is the ".env" file:
 SPOONACULAR_API_KEY="..."
 ```
 

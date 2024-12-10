@@ -1,0 +1,117 @@
+
+{% extends "bootstrap_5_layout.html" %}
+{% set page_title = "Recipes Form" %}
+{% set active_page = "recipes_form" %}
+
+{% block content %}
+
+    <h2>Recipes Form</h2>
+
+    <p>Input the ingredients you have in your kitchen separated by commas and select any filters you would like to find applicable recipes.</p>
+
+    <form action="/recipes/list" method="POST">
+
+        <label>Ingredients:</label>
+        <input type="list" name="ingredients" placeholder="ex., apples, flour, sugar">
+        <br>
+
+        <label>Cuisine:</label>
+        <select class="form-select" name="cuisine" multiple style="width: 200px; height: 100px;">
+            <option value="" selected>No Preference</option>
+            <option value="African">African</option>
+            <option value="Asian">Asian</option>
+            <option value="American">American</option>
+            <option value="British">British</option>
+            <option value="Cajun">Cajun</option>
+            <option value="Caribbean">Caribbean</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Eastern European">Eastern European</option>
+            <option value="European">European</option>
+            <option value="French">French</option>
+            <option value="German">German</option>
+            <option value="Greek">Greek</option>
+            <option value="Indian">Indian</option>
+            <option value="Irish">Irish</option>
+            <option value="Italian">Italian</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Jewish">Jewish</option>
+            <option value="Korean">Korean</option>
+            <option value="Latin American">Latin American</option>
+            <option value="Mediterranean">Mediterranean</option>
+            <option value="Mexican">Mexican</option>
+            <option value="Middle Eastern">Middle Eastern</option>
+            <option value="Nordic">Nordic</option>
+            <option value="Southern">Southern</option>
+            <option value="Spanish">Spanish</option>
+            <option value="Thai">Thai</option>
+            <option value="Vietnamese">Vietnamese</option>
+        </select>
+        <br>
+
+        <label>Diet:</label>
+        <select class="form-select" name="diet" selected="None" multiple style="width: 200px; height: 100px;">
+            <option value="" selected>No Preference</option>
+            <option value="Gluten Free">Gluten Free</option>
+            <option value="Ketogenic">Ketogenic</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Lacto-Vegetarian">Lacto-Vegetarian</option>
+            <option value="Ovo-Vegetarian">Ovo-Vegetarian</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Pescetarian">Pescetarian</option>
+            <option value="Paleo">Paleo</option>
+            <option value="Primal">Primal</option>
+            <option value="Low FODMAP">Low FODMAP</option>
+            <option value="Whole30">Whole30</option>
+        </select>
+        <br>
+
+        <label>Intolerances and Allergies:</label>
+        <select class="form-select" name="intolerances" selected="None" multiple style="width: 200px; height: 100px;">
+            <option value="" selected>None</option>
+            <option value="Dairy">Dairy</option>
+            <option value="Egg">Egg</option>
+            <option value="Gluten">Gluten</option>
+            <option value="Grain">Grain</option>
+            <option value="Peanut">Peanut</option>
+            <option value="Seafood">Seafood</option>
+            <option value="Sesame">Sesame</option>
+            <option value="Shellfish">Shellfish</option>
+            <option value="Soy">Soy</option>
+            <option value="Sulfite">Sulfite</option>
+            <option value="Tree Nut">Tree Nut</option>
+            <option value="Wheat">Wheat</option>
+        </select>
+        <br>
+
+        <label>Dish Type:</label>
+        <select class="form-select" name="dish_type" selected="None" multiple style="width: 200px; height: 100px;">
+            <option value="" selected>None</option>
+            <option value="main course">Main Course</option>
+            <option value="side dish">Side Dish</option>
+            <option value="dessert">Dessert</option>
+            <option value="appetizer">Appetizer</option>
+            <option value="salad">Salad</option>
+            <option value="bread">Bread</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="soup">Soup</option>
+            <option value="beverage">Beverage</option>
+            <option value="sauce">Sauce</option>
+            <option value="marinade">Marinade</option>
+            <option value="fingerfood">Fingerfood</option>
+            <option value="snack">Snack</option>
+            <option value="drink">Drink</option>
+        </select>
+        <br>
+
+        <label>Maximum Time to Make:</label>
+        <input type="number" step="1" name="maxReadyTime" placeholder="None" value="None">
+        <br>
+
+        <label>Number of Results to Show:</label>
+        <input type="number" step="1" name="number" placeholder=52 value=52>
+        <br>
+
+        <button class="btn btn-primary">Find Recipes</button>
+    </form>
+
+{% endblock %}
