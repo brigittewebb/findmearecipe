@@ -1,0 +1,25 @@
+{% extends "bootstrap_5_layout.html" %}
+{% set page_title = "Recipe Information" %}
+{% set active_page = "recipe_info" %}
+
+{% block content %}
+
+    <h1>{{ recipe.title }}</h1>
+
+    <img src="{{ recipe.image }}"" class="img-fluid" alt="Responsive image">
+
+    <p>Ready In: {{ recipe.readyInMinutes }} Minutes</p>
+
+    <p>Missing Ingredients: ADD MISSING INGREDIENTS</p>
+
+    <h3>Ingredients</h3>
+    <ul>
+        {% for ingredient in recipe.extendedIngredients %}
+            <li>{{ ingredient.amount }}{{ ingredient.unit }} {{ ingredient.name }}</li>
+        {% endfor %}
+    </ul>    
+
+    <h3>Instructions</h3>
+    <div>{{ recipe.instructions | safe }}</div>
+
+{% endblock %}
