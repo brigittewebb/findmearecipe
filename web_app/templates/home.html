@@ -5,48 +5,20 @@
 
     <h1>Find Me A Recipe</h1>
 
-    <p>Have you ever wondered what you can make for dinner using only the ingredients you already have in the kitchen? If you have, then this is the website for you! To search for recipes, click on the button below or go to the Recipe Search page.</p>
-
-    <!--
-
-        RESPONSIVE GRID OF CARDS
-
-        SEE:
-
-            https://getbootstrap.com/docs/5.0/layout/grid/
-
-            https://getbootstrap.com/docs/5.0/components/card/
-
-            https://getbootstrap.com/docs/5.0/components/card/#grid-cards
-
-      -->
-
-      <div class="row row-cols-3">
-
-        <div class="card col" style="width: 18rem; margin:20px;">
-            <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
+    <div class="container">
+        <div class="row">
+          <div class="col">
+            <p>Have you ever wondered what you can make for dinner using only the ingredients you already have in the kitchen? If you have, then this is the website for you! To search for recipes, click on the button below or go to the Recipe Search page.</p>
+          </div>
         </div>
-
-        <div class="card col" style="width: 18rem; margin:20px;">
-            <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
+        <div class="row">
+          <div class="col d-flex justify-content-center">
+            <a class="btn btn-success" href="/recipes/form" role="button">Recipe Search</a>
+          </div>
+          <div class="col d-flex justify-content-center">
+            <a class="btn btn-success" href="#" role="button">Log In</a>
+          </div>
         </div>
-
-        <div class="card col" style="width: 18rem; margin:20px;">
-            <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
-
-    </div>
+      </div>
 
 {% endblock %}
