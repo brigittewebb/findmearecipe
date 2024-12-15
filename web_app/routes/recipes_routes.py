@@ -44,14 +44,14 @@ def recipes_list():
 
     try:
         data = retrieve_recipes(ingredients=ingredients,cuisine=cuisine,diet=diet,intolerances=intolerances,dish_type=dish_type,maxReadyTime=maxReadyTime,sort=sort,number=number,fillIngredients=fillIngredients)
-
+        
         flash("Fetched Recipe Data!", "success") # First parameter is message to display, second parameter is bootstrap color code
         return render_template("recipes_list.html",
             #### Could add info about the query here ###
             #symbol=symbol,
             #latest_close_usd=latest_close_usd,
             #latest_date=latest_date,
-            data=data
+            data=data,
         )
     except Exception as err:
         print('OOPS', err)

@@ -12,7 +12,6 @@ load_dotenv() # looks in the ".env" file for env vars
 
 API_KEY = os.getenv("SPOONACULAR_API_KEY", default="demo")
 
-
 def retrieve_recipes(ingredients, cuisine, diet, intolerances, dish_type, maxReadyTime, sort, number, fillIngredients):
 
     url_parameters = {"ingredients":ingredients,"cuisine":cuisine,"diet":diet,"intolerances":intolerances,"type":dish_type,"maxReadyTime":maxReadyTime,"sort":sort,"number":number,"fillIngredients":fillIngredients}

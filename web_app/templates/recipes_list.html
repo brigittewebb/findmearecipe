@@ -16,7 +16,15 @@
                         <img class="card-img-top" src="{{ item.image }}" alt="an image of '{{ item.title }}'">
                         <div class="card-body">
                             <h5 class="card-title">{{ item.title }}</h5>
-                            <p class="card-text">Missing Ingredients: ADD MISSING INGREDIENTS.</p>
+                            <p class="card-text"><b>Missing Ingredients:</b>
+                                {% for ingredient in item.missedIngredients %}
+                                    {% if loop.index < item.missedIngredients|length %}
+                                        {{ingredient.name}},
+                                    {% else %}
+                                        {{ingredient.name}}
+                                    {% endif %}
+                                {% endfor %}
+                            </p>
                             <a href="/recipe/info?recipe_id={{ item.id }}" class="btn btn-success stretched-link">View Info</a> <!--COULD YOU MAKE EACH CARD A FORM?-->
                         </div>
                     </div>
