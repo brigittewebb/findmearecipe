@@ -14,7 +14,15 @@
           <div class="col">
             <p><b>Ready In:</b> {{ recipe.readyInMinutes }} Minutes</p>
             <br>
-            <p>Missing Ingredients: ADD MISSING INGREDIENTS</p>
+            <p><b>Missing Ingredients:</b>
+              {% for ingredient in missing_ingredients %}
+                {% if loop.index < missing_ingredients|length %}
+                  {{ingredient.name}},
+                {% else %}
+                  {{ingredient.name}}
+                {% endif %}
+              {% endfor %}
+            </p>
           </div>
         </div>
         <div class="row">
@@ -34,6 +42,5 @@
             </div>
         </div>
       </div>
-
 
 {% endblock %}
