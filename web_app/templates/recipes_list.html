@@ -16,8 +16,22 @@
                         <img class="card-img-top" src="{{ item.image }}" alt="an image of '{{ item.title }}'">
                         <div class="card-body">
                             <h5 class="card-title">{{ item.title }}</h5>
-                            <p class="card-text">Missing Ingredients: ADD MISSING INGREDIENTS.</p>
-                            <a href="/recipe/info?recipe_id={{ item.id }}" class="btn btn-success stretched-link">View Info</a> <!--COULD YOU MAKE EACH CARD A FORM?-->
+                            <p class="card-text"><b>Missing Ingredients:</b>
+                                {% for ingredient in item.missedIngredients %}
+                                    {% if loop.index < item.missedIngredients|length %}
+                                        {{ingredient.name}},
+                                    {% else %}
+                                        {{ingredient.name}}
+                                    {% endif %}
+                                {% endfor %}
+                            </p>
+                            
+                            <!-- SELECT RECIPE TO VIEW -->
+                            <form method="POST" action="/recipe/info" style="display: inline;">
+                                <input type="hidden" name="recipe_id" value="{{ item.id }}">
+                                <input type="hidden" name="missing_ingredients" value="{{ item.missedIngredients }}">
+                                <button type="submit" class="btn btn-success">View Info</button>
+                            </form>
                         </div>
                     </div>
                 </div>

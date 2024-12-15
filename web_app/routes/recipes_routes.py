@@ -40,7 +40,7 @@ def recipes_list():
     maxReadyTime = request_data.get("MaxReadyTime")
     sort = "min-missing-ingredients"
     number = request_data.get("number")
-    fillIngredients= True ### Do we need this and store it somewhere?###
+    fillIngredients= True
 
     try:
         data = retrieve_recipes(ingredients=ingredients,cuisine=cuisine,diet=diet,intolerances=intolerances,dish_type=dish_type,maxReadyTime=maxReadyTime,sort=sort,number=number,fillIngredients=fillIngredients)
@@ -51,7 +51,7 @@ def recipes_list():
             #symbol=symbol,
             #latest_close_usd=latest_close_usd,
             #latest_date=latest_date,
-            data=data
+            data=data,
         )
     except Exception as err:
         print('OOPS', err)
@@ -59,18 +59,28 @@ def recipes_list():
         flash("Recipe Data Error. Please check your inputs and try again!", "danger")
         return redirect("/recipes/form")
     
-@recipes_routes.route("/recipe/info")
+@recipes_routes.route("/recipe/info", methods=["POST"])
 def recipe_info():
-    request_data = dict(request.args)
-    print("URL PARAMS:", request_data)
+    if request.method == "POST":
+        # for data sent via POST request, form inputs are in request.form:
+        request_data = dict(request.form)
+        print("FORM DATA:", request_data)
+    else:
+        # for data sent via GET request, url params are in request.args
+        request_data = dict(request.args)
+        print("URL PARAMS:", request_data)
+
+    # Grabbing some data from the dictionary sent by the form (or URL parameters)
+    recipe_id = request_data["recipe_id"]
+    missing_ingredients = request_data["missing_ingredients"]
+    parsed_missing_ingredients = eval(missing_ingredients)
     
     try:
-        recipe_id = request_data["recipe_id"]
-
         recipe = retrieve_recipe_info(recipe_id=recipe_id)
         flash("Fetched Recipe Data!", "success") # First parameter is message to display, second parameter is bootstrap color code
         return render_template("recipe_info.html",
-            recipe=recipe
+            recipe=recipe,
+            missing_ingredients=parsed_missing_ingredients
         )
     except Exception as err:
         print('OOPS', err)
