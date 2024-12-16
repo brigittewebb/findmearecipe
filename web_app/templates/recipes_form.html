@@ -15,7 +15,8 @@
             <div class="row">
               <div class="col">
                 <label>Ingredients:</label>
-                <input type="list" name="ingredients" placeholder="ex., apples, flour, sugar">
+                <input type="list" name="ingredients" placeholder="ex., apples, flour, sugar" style="width:75%" >
+                <br>
                 <br>
             </div>
             <div class="row">
@@ -73,19 +74,10 @@
                 <br>
               </div>
               <div class="col">
-                <label>Maximum Time to Make:</label>
+                <label>Max. Time to Make (Mins):</label>
                 <input type="number" step="1" name="maxReadyTime" placeholder="None" value="None">
                 <br>
               </div>
-            </div>
-            <div class="row">
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col">
-                    <label>Number of Results to Show:</label>
-                    <input type="number" step="1" name="number" placeholder=52 value=52>
-                    <br>
-                </div>
             </div>
             <div class="row">
                 <div class="col">
@@ -127,8 +119,15 @@
                     </select>
                     <br>
                 </div>
-                <div class="col d-flex align-items-center justify-content-center vh-10">
-                    <button class="btn btn-success">Find Recipes</button>
+                <div class="col">
+                    <label>Number of Results to Show:</label>
+                    <input type="number" step="1" name="number" placeholder=52 value=52>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="col d-flex align-items-center justify-content-center vh-10">
+                        <button class="btn btn-success">Find Recipes</button>
+                    </div>
                 </div>
             </div>
           </div>
