@@ -3,7 +3,7 @@
 
 from flask import Blueprint, request, render_template, redirect, flash
 
-from app.recipes import retrieve_recipes, retrieve_recipe_info
+from app.recipes import retrieve_recipes_by_ingredients, retrieve_recipe_info
 
 recipes_routes = Blueprint("recipes_routes", __name__)
 
@@ -47,7 +47,7 @@ def recipes_list():
     fillIngredients= True
 
     try:
-        data = retrieve_recipes(search_criteria=search_criteria,cuisine=cuisine,diet=diet,intolerances=intolerances,dish_type=dish_type,maxReadyTime=maxReadyTime,sort=sort,number=number,fillIngredients=fillIngredients)
+        data = retrieve_recipes_by_ingredients(search_criteria=search_criteria,cuisine=cuisine,diet=diet,intolerances=intolerances,dish_type=dish_type,maxReadyTime=maxReadyTime,sort=sort,number=number,fillIngredients=fillIngredients)
 
         flash("Fetched Recipe Data!", "success") # First parameter is message to display, second parameter is bootstrap color code
         return render_template("recipes_list_by_ingredients.html",
@@ -111,7 +111,7 @@ def recipes_api():
     fillIngredients= True
 
     try:
-        data = retrieve_recipes(search_criteria=search_criteria,cuisine=cuisine,diet=diet,intolerances=intolerances,dish_type=dish_type,maxReadyTime=maxReadyTime,sort=sort,number=number,fillIngredients=fillIngredients)
+        data = retrieve_recipes_by_ingredients(search_criteria=search_criteria,cuisine=cuisine,diet=diet,intolerances=intolerances,dish_type=dish_type,maxReadyTime=maxReadyTime,sort=sort,number=number,fillIngredients=fillIngredients)
         return {"data": data }
     except Exception as err:
         print('OOPS', err)
