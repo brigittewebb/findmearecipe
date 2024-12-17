@@ -20,7 +20,7 @@ def test_data_fetching_by_ingredients():
 
 def test_data_fetching_by_keyword():
     
-    selected_search_criteria = ["apples","flour","sugar"]
+    selected_search_criteria = "banana bread"
     selected_diet = None # Special diets (ex., "vegetarian")--dropdown list
     selected_intolerances = None # Dietary resrictions (ex., "gluten")--dropdown list
     selected_number = 1 # Number of desired results
