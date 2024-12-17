@@ -1,6 +1,6 @@
 {% extends "bootstrap_5_layout.html" %}
-{% set page_title = "Recipe Suggestions" %}
-{% set active_page = "recipes_list" %}
+{% set page_title = "Recipe Suggestions by Ingredients" %}
+{% set active_page = "recipes_list_by_ingredients" %}
 
 {% block content %}
 
@@ -27,7 +27,7 @@
                             </p>
                             
                             <!-- SELECT RECIPE TO VIEW -->
-                            <form method="POST" action="/recipe/info" style="display: inline;">
+                            <form method="POST" action="/recipe/by_ingredients/info" style="display: inline;">
                                 <input type="hidden" name="recipe_id" value="{{ item.id }}">
                                 <input type="hidden" name="missing_ingredients" value="{{ item.missedIngredients }}">
                                 <button type="submit" class="btn btn-success">View Info</button>
