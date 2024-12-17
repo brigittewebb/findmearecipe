@@ -1,10 +1,10 @@
 # this is the "test/recipes_test.py" file...
 
-from app.recipes import retrieve_recipes
+from app.recipes import retrieve_recipes_by_ingredients
 
-def test_data_fetching():
+def test_data_fetching_by_ingredients():
     
-    selected_ingredients = ["apples","flour","sugar"]
+    selected_search_criteria = ["apples","flour","sugar"]
     selected_cuisine = None # Type of food (ex., "Italian")--dropdown list
     selected_diet = None # Special diets (ex., "vegetarian")--dropdown list
     selected_intolerances = None # Dietary resrictions (ex., "gluten")--dropdown list
@@ -14,6 +14,6 @@ def test_data_fetching():
     selected_number = 1 # Number of desired results
     selected_fillIngredients = True
     
-    data = retrieve_recipes(selected_ingredients,selected_cuisine, selected_diet, selected_intolerances, selected_dish_type, selected_maxReadyTime, selected_sort, selected_number, selected_fillIngredients)
+    data = retrieve_recipes_by_ingredients(selected_search_criteria,selected_cuisine, selected_diet, selected_intolerances, selected_dish_type, selected_maxReadyTime, selected_sort, selected_number, selected_fillIngredients)
     assert isinstance(data, list)
     assert len(data) == selected_number

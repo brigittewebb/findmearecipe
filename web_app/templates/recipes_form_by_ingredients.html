@@ -1,7 +1,6 @@
-
 {% extends "bootstrap_5_layout.html" %}
-{% set page_title = "Recipe Search" %}
-{% set active_page = "recipes_form" %}
+{% set page_title = "Recipe Search by Ingredients" %}
+{% set active_page = "recipes_form_by_ingredients" %}
 
 {% block content %}
 
@@ -9,13 +8,13 @@
 
     <p>Input the ingredients you have in your kitchen separated by commas and select any filters you would like to find applicable recipes.</p>
 
-    <form action="/recipes/list" method="POST">
+    <form action="/recipes/by_ingredients/list" method="POST">
 
         <div class="container">
             <div class="row">
               <div class="col">
                 <label>Ingredients:</label>
-                <input type="list" name="ingredients" placeholder="ex., apples, flour, sugar" style="width:75%" >
+                <input type="list" name="search_criteria" placeholder="ex., apples, flour, sugar" style="width:75%" >
                 <br>
                 <br>
             </div>
@@ -121,7 +120,7 @@
                 </div>
                 <div class="col">
                     <label>Number of Results to Show:</label>
-                    <input type="number" step="1" name="number" placeholder=52 value=52>
+                    <input type="number" step="1" name="number" placeholder=40 value=40>
                     <br>
                     <br>
                     <br>
