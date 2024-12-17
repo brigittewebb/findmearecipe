@@ -1,0 +1,72 @@
+{% extends "bootstrap_5_layout.html" %}
+{% set page_title = "Recipe Search by Keyword" %}
+{% set active_page = "recipes_form_by_keyword" %}
+
+{% block content %}
+
+    <h2>Recipe Search</h2>
+
+    <p>Input the name of the dish or recipe you would like to find applicable recipes.</p>
+
+    <form action="/recipes/by_keyword/list" method="POST">
+
+        <div class="container">
+            <div class="row">
+              <div class="col">
+                <label>Recipe Name:</label>
+                <input type="list" name="search_criteria" placeholder="ex., banana bread" style="width:75%" >
+                <br>
+                <br>
+            </div>
+            <div class="row">
+              <div class="col">
+                <label>Diet:</label>
+                    <select class="form-select" name="diet" selected="None" multiple style="width: 200px; height: 100px;">
+                        <option value="" selected>No Preference</option>
+                        <option value="Gluten Free">Gluten Free</option>
+                        <option value="Ketogenic">Ketogenic</option>
+                        <option value="Vegetarian">Vegetarian</option>
+                        <option value="Lacto-Vegetarian">Lacto-Vegetarian</option>
+                        <option value="Ovo-Vegetarian">Ovo-Vegetarian</option>
+                        <option value="Vegan">Vegan</option>
+                        <option value="Pescetarian">Pescetarian</option>
+                        <option value="Paleo">Paleo</option>
+                        <option value="Primal">Primal</option>
+                        <option value="Low FODMAP">Low FODMAP</option>
+                        <option value="Whole30">Whole30</option>
+                    </select>
+              </div>
+              <div class="col">
+                <label>Intolerances and Allergies:</label>
+                <select class="form-select" name="intolerances" selected="None" multiple style="width: 200px; height: 100px;">
+                    <option value="" selected>None</option>
+                    <option value="Dairy">Dairy</option>
+                    <option value="Egg">Egg</option>
+                    <option value="Gluten">Gluten</option>
+                    <option value="Grain">Grain</option>
+                    <option value="Peanut">Peanut</option>
+                    <option value="Seafood">Seafood</option>
+                    <option value="Sesame">Sesame</option>
+                    <option value="Shellfish">Shellfish</option>
+                    <option value="Soy">Soy</option>
+                    <option value="Sulfite">Sulfite</option>
+                    <option value="Tree Nut">Tree Nut</option>
+                    <option value="Wheat">Wheat</option>
+                </select>
+              </div>
+              <div class="col">
+                <label>Number of Results to Show:</label>
+                <input type="number" step="1" name="number" placeholder=12 value=12>
+                <br>
+                <br>
+                <br>
+                <div class="col d-flex align-items-center justify-content-center vh-10">
+                    <button class="btn btn-success">Find Recipes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </form>
+
+{% endblock %}

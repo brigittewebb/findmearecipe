@@ -1,0 +1,36 @@
+{% extends "bootstrap_5_layout.html" %}
+{% set page_title = "Search Recipes by Name" %}
+{% set active_page = "recipe_info_by_keyword" %}
+
+{% block content %}
+
+    <h1>{{ recipe.title }}</h1>
+
+    <div class="container">
+        <div class="row">
+          <div class="col">
+            <img src="{{ recipe.image }}"" class="img-fluid" alt="Responsive image">
+          </div>
+          <div class="col">
+            <p><b>Ready In:</b> {{ recipe.readyInMinutes }} Minutes</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <br>
+            <h3>Ingredients</h3>
+            <ul>
+                {% for ingredient in recipe.extendedIngredients %}
+                    <li>{{ ingredient.original}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Instructions</h3>
+                <div>{{ recipe.instructions | safe }}</div>
+            </div>
+        </div>
+      </div>
+
+{% endblock %}
