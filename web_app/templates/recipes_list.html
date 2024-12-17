@@ -1,6 +1,6 @@
 {% extends "bootstrap_5_layout.html" %}
-{% set page_title = "Recipe Suggestions by Keyword" %}
-{% set active_page = "recipes_list_by_keyword" %}
+{% set page_title = "Recipe Suggestions" %}
+{% set active_page = "recipes_list" %}
 
 {% block content %}
 
@@ -8,6 +8,7 @@
 
     {% if data|length > 0 %}
 
+        <!--div class="container"-->
         <div class="row">
             {% for item in data %}
                 <div class="col">
@@ -15,10 +16,20 @@
                         <img class="card-img-top" src="{{ item.image }}" alt="an image of '{{ item.title }}'">
                         <div class="card-body">
                             <h5 class="card-title">{{ item.title }}</h5>
+                            <p class="card-text"><b>Missing Ingredients:</b>
+                                {% for ingredient in item.missedIngredients %}
+                                    {% if loop.index < item.missedIngredients|length %}
+                                        {{ingredient.name}},
+                                    {% else %}
+                                        {{ingredient.name}}
+                                    {% endif %}
+                                {% endfor %}
+                            </p>
                             
                             <!-- SELECT RECIPE TO VIEW -->
-                            <form method="POST" action="/recipe/by_keyword/info" style="display: inline;">
+                            <form method="POST" action="/recipe/info" style="display: inline;">
                                 <input type="hidden" name="recipe_id" value="{{ item.id }}">
+                                <input type="hidden" name="missing_ingredients" value="{{ item.missedIngredients }}">
                                 <button type="submit" class="btn btn-success">View Info</button>
                             </form>
                         </div>
@@ -26,6 +37,7 @@
                 </div>
             {% endfor %}
         </div>
+        <!--/div-->
 
     {% else %}
 

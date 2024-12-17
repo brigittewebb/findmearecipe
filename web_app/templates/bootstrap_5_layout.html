@@ -40,14 +40,12 @@
         https://getbootstrap.com/docs/5.0/components/navbar/
     -->
     {% set nav_links = [
-        ('/recipes/by_ingredients/form', 'recipes_form_by_ingredients', 'Search Recipes by Ingredients'),
-        ('/recipes/by_keyword/form', 'recipes_form_by_keyword', 'Search Recipes by Name')
+        ('/recipes/form', 'recipes_form', 'Recipe Search'),
     ] -%}
     <!--
         Recipe Suggestions page has been disabled from the nav bar
-        To add the Recipe Suggestions pages to the nav bar, add the below within the set nav_links block
-        ('/recipes/by_ingredients/list', 'recipes_list_by_ingredients', 'Recipe Suggestions by Ingredients'),
-        ('/recipes/by_keyword/list', 'recipes_list_by_keyword', 'Recipe Suggestions by Keyword')
+        To add the Recipe Suggestions page to the nav bar, add the below within the set nav_links block
+        ('/recipes/list', 'recipes_list', 'Recipe Suggestions'),
     -->
     {% set active_page = active_page|default('home') -%} <!---- Change default to home if we add a home page-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
