@@ -33,7 +33,7 @@ def retrieve_recipes_by_ingredients(search_criteria, cuisine, diet, intolerances
 
 def retrieve_recipes_by_keyword(search_criteria, diet, intolerances, number, fillIngredients):
 
-    url_parameters = {"search_criteria":search_criteria,"diet":diet,"intolerances":intolerances,"number":number,"fillIngredients":fillIngredients}
+    url_parameters = {"query":search_criteria,"diet":diet,"intolerances":intolerances,"number":number,"fillIngredients":fillIngredients}
     selected_url_parameters = ""
 
     for key in url_parameters:
