@@ -31,11 +31,11 @@ def recipes_list_by_ingredients():
     print("RECIPES LIST...")
 
     if request.method == "POST":
-        # for data sent via POST request, form inputs are in request.form:
+        # For data sent via POST request, form inputs are in request.form:
         request_data = dict(request.form)
         print("FORM DATA:", request_data)
     else:
-        # for data sent via GET request, url params are in request.args
+        # For data sent via GET request, url params are in request.args
         request_data = dict(request.args)
         print("URL PARAMS:", request_data)
 
@@ -66,11 +66,11 @@ def recipes_list_by_ingredients():
 @recipes_routes.route("/recipe/by_ingredients/info", methods=["POST"])
 def recipe_info_by_ingredients():
     if request.method == "POST":
-        # for data sent via POST request, form inputs are in request.form:
+        # For data sent via POST request, form inputs are in request.form:
         request_data = dict(request.form)
         print("FORM DATA:", request_data)
     else:
-        # for data sent via GET request, url params are in request.args
+        # For data sent via GET request, url params are in request.args
         request_data = dict(request.args)
         print("URL PARAMS:", request_data)
 
@@ -107,11 +107,11 @@ def recipes_list_by_keyword():
     print("RECIPES LIST...")
 
     if request.method == "POST":
-        # for data sent via POST request, form inputs are in request.form:
+        # For data sent via POST request, form inputs are in request.form:
         request_data = dict(request.form)
         print("FORM DATA:", request_data)
     else:
-        # for data sent via GET request, url params are in request.args
+        # For data sent via GET request, url params are in request.args
         request_data = dict(request.args)
         print("URL PARAMS:", request_data)
 
@@ -138,11 +138,11 @@ def recipes_list_by_keyword():
 @recipes_routes.route("/recipe/by_keyword/info", methods=["POST"])
 def recipe_inf_by_keyword():
     if request.method == "POST":
-        # for data sent via POST request, form inputs are in request.form:
+        # For data sent via POST request, form inputs are in request.form:
         request_data = dict(request.form)
         print("FORM DATA:", request_data)
     else:
-        # for data sent via GET request, url params are in request.args
+        # For data sent via GET request, url params are in request.args
         request_data = dict(request.args)
         print("URL PARAMS:", request_data)
 
@@ -169,7 +169,7 @@ def recipe_inf_by_keyword():
 def recipes_api():
     print("RECIPES DATA (API)...")
 
-    # for data supplied via GET request, url params are in request.args:
+    # For data supplied via GET request, url params are in request.args:
     url_params = dict(request.args)
     print("URL PARAMS:", url_params)
     search_criteria = url_params.get("search_criteria")
