@@ -187,7 +187,7 @@ def recipes_api():
     fillIngredients= True
 
     try:
-        data = retrieve_recipes(search_criteria=search_criteria,cuisine=cuisine,diet=diet,intolerances=intolerances,dish_type=dish_type,maxReadyTime=maxReadyTime,sort=sort,number=number,fillIngredients=fillIngredients)
+        data = retrieve_recipes_by_ingredients(search_criteria=search_criteria,cuisine=cuisine,diet=diet,intolerances=intolerances,dish_type=dish_type,maxReadyTime=maxReadyTime,sort=sort,number=number,fillIngredients=fillIngredients)
         return {"data": data }
     except Exception as err:
         print('OOPS', err)
