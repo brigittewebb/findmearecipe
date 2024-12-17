@@ -3,33 +3,23 @@
 
 from flask import Blueprint, request, render_template, redirect, flash
 
-from app.recipes import retrieve_recipes_by_ingredients, retrieve_recipes_by_keyword, retrieve_recipe_info
+from app.recipes import retrieve_recipes, retrieve_recipe_info
 
 recipes_routes = Blueprint("recipes_routes", __name__)
-
-
-#
-# HOME ROUTES
-#
 
 @recipes_routes.route("/")
 def Home():
     print("HOME...")
     return render_template("home.html")
 
-
-#
-# RECIPES BY INGREDIENTS ROUTES
-#
-
-@recipes_routes.route("/recipes/by_ingredients/form")
-def recipes_form_by_ingredients():
+@recipes_routes.route("/recipes/form")
+def recipes_form():
     print("RECIPES FORM...")
-    return render_template("recipes_form_by_ingredients.html")
+    return render_template("recipes_form.html")
 
-#@recipes_routes.route("/recipes/by_ingredients/list", methods=["POST"])
-@recipes_routes.route("/recipes/by_ingredients/list", methods=["GET", "POST"])
-def recipes_list_by_ingredients():
+#@recipes_routes.route("/recipes/list", methods=["POST"])
+@recipes_routes.route("/recipes/list", methods=["GET", "POST"])
+def recipes_list():
     print("RECIPES LIST...")
 
     if request.method == "POST":
@@ -42,7 +32,7 @@ def recipes_list_by_ingredients():
         print("URL PARAMS:", request_data)
 
     # Grabbing some data from the dictionary sent by the form (or URL parameters)
-    search_criteria = request_data.get("search_criteria")
+    ingredients = request_data.get("ingredients")
     cuisine = request_data.get("cuisine")
     diet = request_data.get("diet")
     intolerances = request_data.get("intolerances")
@@ -53,20 +43,24 @@ def recipes_list_by_ingredients():
     fillIngredients= True
 
     try:
-        data = retrieve_recipes_by_ingredients(search_criteria=search_criteria,cuisine=cuisine,diet=diet,intolerances=intolerances,dish_type=dish_type,maxReadyTime=maxReadyTime,sort=sort,number=number,fillIngredients=fillIngredients)
+        data = retrieve_recipes(ingredients=ingredients,cuisine=cuisine,diet=diet,intolerances=intolerances,dish_type=dish_type,maxReadyTime=maxReadyTime,sort=sort,number=number,fillIngredients=fillIngredients)
 
         flash("Fetched Recipe Data!", "success") # First parameter is message to display, second parameter is bootstrap color code
-        return render_template("recipes_list_by_ingredients.html",
+        return render_template("recipes_list.html",
+            #### Could add info about the query here ###
+            #symbol=symbol,
+            #latest_close_usd=latest_close_usd,
+            #latest_date=latest_date,
             data=data,
         )
     except Exception as err:
         print('OOPS', err)
 
         flash("Recipe Data Error. Please check your inputs and try again!", "danger")
-        return redirect("/recipes/by_ingredients/form")
+        return redirect("/recipes/form")
     
-@recipes_routes.route("/recipe/by_ingredients/info", methods=["POST"])
-def recipe_info_by_ingredients():
+@recipes_routes.route("/recipe/info", methods=["POST"])
+def recipe_info():
     if request.method == "POST":
         # for data sent via POST request, form inputs are in request.form:
         request_data = dict(request.form)
@@ -84,7 +78,7 @@ def recipe_info_by_ingredients():
     try:
         recipe = retrieve_recipe_info(recipe_id=recipe_id)
         flash("Fetched Recipe Data!", "success") # First parameter is message to display, second parameter is bootstrap color code
-        return render_template("recipe_info_by_ingredients.html",
+        return render_template("recipe_info.html",
             recipe=recipe,
             missing_ingredients=parsed_missing_ingredients
         )
@@ -92,77 +86,7 @@ def recipe_info_by_ingredients():
         print('OOPS', err)
 
         flash("Recipe Data Error. Please check your inputs and try again!", "danger")
-        return redirect("/recipes/by_ingredients/form")
-
-
-#
-# RECIPES BY KEYWORD ROUTES
-#
-
-@recipes_routes.route("/recipes/by_keyword/form")
-def recipes_form_by_keyword():
-    print("RECIPES FORM...")
-    return render_template("recipes_form_by_keyword.html")
-
-#@recipes_routes.route("/recipes/by_keyword/list", methods=["POST"])
-@recipes_routes.route("/recipes/by_keyword/list", methods=["GET", "POST"])
-def recipes_list_by_keyword():
-    print("RECIPES LIST...")
-
-    if request.method == "POST":
-        # for data sent via POST request, form inputs are in request.form:
-        request_data = dict(request.form)
-        print("FORM DATA:", request_data)
-    else:
-        # for data sent via GET request, url params are in request.args
-        request_data = dict(request.args)
-        print("URL PARAMS:", request_data)
-
-    # Grabbing some data from the dictionary sent by the form (or URL parameters)
-    search_criteria = request_data.get("search_criteria")
-    diet = request_data.get("diet")
-    intolerances = request_data.get("intolerances")
-    number = request_data.get("number")
-    fillIngredients= True
-
-    try:
-        data = retrieve_recipes_by_keyword(search_criteria=search_criteria,diet=diet,intolerances=intolerances,number=number,fillIngredients=fillIngredients)
-
-        flash("Fetched Recipe Data!", "success") # First parameter is message to display, second parameter is bootstrap color code
-        return render_template("recipes_list_by_keyword.html",
-            data=data,
-        )
-    except Exception as err:
-        print('OOPS', err)
-
-        flash("Recipe Data Error. Please check your inputs and try again!", "danger")
-        return redirect("/recipes/by_keyword/form")
-    
-@recipes_routes.route("/recipe/by_keyword/info", methods=["POST"])
-def recipe_info_by_keyword():
-    if request.method == "POST":
-        # for data sent via POST request, form inputs are in request.form:
-        request_data = dict(request.form)
-        print("FORM DATA:", request_data)
-    else:
-        # for data sent via GET request, url params are in request.args
-        request_data = dict(request.args)
-        print("URL PARAMS:", request_data)
-
-    # Grabbing some data from the dictionary sent by the form (or URL parameters)
-    recipe_id = request_data["recipe_id"]
-    
-    try:
-        recipe = retrieve_recipe_info(recipe_id=recipe_id)
-        flash("Fetched Recipe Data!", "success") # First parameter is message to display, second parameter is bootstrap color code
-        return render_template("recipe_info_by_keyword.html",
-            recipe=recipe
-        )
-    except Exception as err:
-        print('OOPS', err)
-
-        flash("Recipe Data Error. Please check your inputs and try again!", "danger")
-        return redirect("/recipes/by_keyword/form")
+        return redirect("/recipes/form")
 
 
 #
@@ -176,7 +100,7 @@ def recipes_api():
     # for data supplied via GET request, url params are in request.args:
     url_params = dict(request.args)
     print("URL PARAMS:", url_params)
-    search_criteria = url_params.get("search_criteria")
+    ingredients = url_params.get("ingredients")
     cuisine = url_params.get("cuisine")
     diet = url_params.get("diet")
     intolerances = url_params.get("intolerances")
@@ -184,10 +108,10 @@ def recipes_api():
     maxReadyTime = url_params.get("maxReadyTime")
     sort = "min-missing-ingredients"
     number = url_params.get("number")
-    fillIngredients= True
+    fillIngredients= True ### Do we need this and store it somewhere?###
 
     try:
-        data = retrieve_recipes_by_ingredients(search_criteria=search_criteria,cuisine=cuisine,diet=diet,intolerances=intolerances,dish_type=dish_type,maxReadyTime=maxReadyTime,sort=sort,number=number,fillIngredients=fillIngredients)
+        data = retrieve_recipes(ingredients=ingredients,cuisine=cuisine,diet=diet,intolerances=intolerances,dish_type=dish_type,maxReadyTime=maxReadyTime,sort=sort,number=number,fillIngredients=fillIngredients)
         return {"data": data }
     except Exception as err:
         print('OOPS', err)
